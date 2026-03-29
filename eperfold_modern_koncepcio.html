@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eperföld – modernizált koncepció</title>
+  <style>
+    :root{
+      --bg:#fcfaf6;
+      --surface:#ffffff;
+      --surface-2:#f6f3ee;
+      --text:#1d2b22;
+      --muted:#5e6d63;
+      --line:rgba(0,0,0,0.08);
+      --green:#3a7d44;
+      --red:#b6263d;
+      --seed:#ffecc7;
+      --shadow:0 20px 60px rgba(0,0,0,0.08);
+      --radius-xl:32px;
+      --radius-lg:24px;
+      --radius-md:18px;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 85% 8%, rgba(182,38,61,0.12), transparent 22%),
+        radial-gradient(circle at 10% 18%, rgba(58,125,68,0.10), transparent 24%),
+        var(--bg);
+    }
+    a{text-decoration:none;color:inherit}
+    .container{width:min(var(--max), calc(100% - 32px)); margin:0 auto}
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background:rgba(252,250,246,0.88);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:24px; padding:16px 0;
+    }
+    .brand{display:flex; align-items:center; gap:14px}
+    .brand-title{font-weight:700; font-size:1.1rem; letter-spacing:-0.02em}
+    .brand-sub{font-size:.92rem; color:var(--muted)}
+    .nav-links{display:flex; gap:28px; font-size:.95rem; color:#35433a}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:14px 22px; border-radius:999px; font-weight:700; font-size:.95rem;
+      transition:.18s ease;
+      border:1px solid transparent;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-dark{background:var(--text); color:#fff}
+    .btn-primary{background:var(--red); color:#fff; box-shadow:0 14px 28px rgba(182,38,61,.22)}
+    .btn-light{background:#fff; border-color:#dde2dd}
+    .hero{
+      padding:72px 0 52px;
+      display:grid; grid-template-columns:1.08fr .92fr; gap:36px; align-items:center;
+    }
+    .pill{
+      display:inline-flex; padding:10px 14px; border-radius:999px;
+      background:rgba(255,255,255,.82); border:1px solid #e2e6e2; color:#526157;
+      font-size:.92rem; box-shadow:0 8px 24px rgba(0,0,0,.04);
+    }
+    h1{
+      font-size:clamp(2.4rem, 6vw, 4.6rem);
+      line-height:1.02; letter-spacing:-0.045em; margin:18px 0 0;
+      max-width:760px;
+    }
+    .accent{color:var(--red)}
+    .lead{
+      margin:22px 0 0; max-width:700px;
+      color:#526157; font-size:1.09rem; line-height:1.8;
+    }
+    .hero-actions{display:flex; flex-wrap:wrap; gap:14px; margin-top:32px}
+    .hero-panel{
+      background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-xl);
+      padding:20px; box-shadow:var(--shadow);
+    }
+    .hero-panel-inner{
+      background:var(--surface-2); border-radius:26px; padding:22px;
+    }
+    .status-row{display:flex; justify-content:space-between; align-items:flex-start; gap:16px}
+    .status-badge{
+      background:#fff1f3; color:var(--red); border-radius:999px;
+      padding:8px 12px; font-size:.9rem; font-weight:700;
+    }
+    .status-title{font-size:.9rem; color:#637268}
+    .status-value{font-size:1.9rem; font-weight:800; margin-top:4px; letter-spacing:-0.03em}
+    .grid-2{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px; margin-top:22px}
+    .stat{
+      background:#fff; border-radius:22px; padding:18px; box-shadow:0 8px 22px rgba(0,0,0,.04);
+      border:1px solid rgba(0,0,0,0.04);
+    }
+    .stat-label{font-size:.9rem; color:#67756d}
+    .stat-value{font-weight:800; font-size:1.34rem; margin-top:6px; letter-spacing:-0.03em}
+    .stat-note{font-size:.92rem; color:var(--muted); line-height:1.6; margin-top:10px}
+    .section{padding:26px 0 34px}
+    .section-white{background:#fff}
+    .section-head{
+      display:flex; justify-content:space-between; align-items:flex-end; gap:22px; margin-bottom:24px;
+    }
+    .eyebrow{font-size:.82rem; text-transform:uppercase; letter-spacing:.22em; color:#7b857f}
+    h2{
+      margin:8px 0 0; font-size:clamp(2rem, 4vw, 3rem);
+      letter-spacing:-0.04em; line-height:1.08;
+    }
+    .section-copy{max-width:480px; color:var(--muted); line-height:1.7; font-size:.95rem}
+    .locations{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:18px}
+    .card{
+      background:#fff; border:1px solid var(--line); border-radius:28px;
+      padding:22px; box-shadow:0 10px 28px rgba(0,0,0,.045);
+    }
+    .card h3{margin:0; font-size:1.12rem; line-height:1.4; letter-spacing:-0.02em}
+    .tag{
+      display:inline-flex; margin-top:14px; background:#f4f6f4; color:#445149;
+      border-radius:999px; padding:8px 12px; font-size:.9rem; font-weight:600;
+    }
+    .card p{margin:16px 0 0; color:var(--muted); line-height:1.7; font-size:.94rem}
+    .card .ghost{
+      display:inline-flex; margin-top:18px; border:1px solid #d8ddd8; border-radius:999px;
+      padding:10px 14px; font-size:.9rem; font-weight:700; background:#fff;
+    }
+    .benefits{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:18px}
+    .benefit{background:var(--bg); border:1px solid var(--line); border-radius:24px; padding:22px}
+    .benefit h3{margin:0; font-size:1.1rem; letter-spacing:-0.02em}
+    .benefit p{margin:12px 0 0; color:var(--muted); line-height:1.7; font-size:.95rem}
+    .faq{display:grid; gap:14px; margin-top:26px}
+    .faq-item{
+      background:#fff; border:1px solid var(--line); border-radius:24px;
+      padding:22px; box-shadow:0 10px 24px rgba(0,0,0,.03);
+    }
+    .faq-q{font-weight:800; font-size:1.08rem; letter-spacing:-0.02em}
+    .faq-a{margin-top:10px; color:var(--muted); line-height:1.75; font-size:.95rem}
+    .contact{
+      background:var(--text); color:#fff; border-radius:36px; padding:28px;
+      display:grid; grid-template-columns:.95fr 1.05fr; gap:24px;
+    }
+    .contact p{color:rgba(255,255,255,.75); line-height:1.8}
+    .contact-grid{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px}
+    .contact-card{
+      background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
+      border-radius:24px; padding:18px;
+    }
+    .contact-label{font-size:.88rem; color:rgba(255,255,255,.6)}
+    .contact-value{margin-top:8px; font-weight:800; font-size:1.05rem; line-height:1.45}
+    .contact-sub{margin-top:8px; font-size:.92rem; color:rgba(255,255,255,.72); line-height:1.6}
+    footer{padding:26px 0 42px; color:#718077; font-size:.9rem}
+    @media (max-width: 980px){
+      .nav-links{display:none}
+      .hero, .contact{grid-template-columns:1fr}
+      .locations{grid-template-columns:repeat(2, minmax(0,1fr))}
+      .section-head{flex-direction:column; align-items:flex-start}
+    }
+    @media (max-width: 640px){
+      .container{width:min(var(--max), calc(100% - 22px))}
+      .hero{padding-top:42px}
+      .grid-2, .benefits, .contact-grid, .locations{grid-template-columns:1fr}
+      .hero-panel, .contact{border-radius:28px}
+      .card, .benefit, .faq-item{border-radius:22px}
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <img src="eper_logo_minimal.svg" alt="Eperföld logó" width="48" height="48" />
+        <div>
+          <div class="brand-title">Eperföld</div>
+          <div class="brand-sub">Szedd magad, egyszerűen</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#helyszinek">Helyszínek</a>
+        <a href="#informacio">Információk</a>
+        <a href="#gyik">GYIK</a>
+        <a href="#kapcsolat">Kapcsolat</a>
+      </nav>
+
+      <a class="btn btn-dark" href="#kapcsolat">Kapcsolat</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero">
+      <div>
+        <div class="pill">Frissíthető szezonnyitás • Letisztult, mobilbarát felület</div>
+        <h1>Modern, bizalomépítő weboldal egy <span class="accent">szedd magad eper</span> márkának.</h1>
+        <p class="lead">
+          A cél nem a díszítés. A cél az, hogy a látogató 10 másodperc alatt megtalálja a lényeget:
+          nyitva van-e, mennyi az ár, hol vannak a földek, hogyan tud elindulni, és hogyan lép kapcsolatba veletek.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#helyszinek">Helyszínek megtekintése</a>
+          <a class="btn btn-light" href="#informacio">Fontos tudnivalók</a>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="hero-panel-inner">
+          <div class="status-row">
+            <div>
+              <div class="status-title">Szezon állapot</div>
+              <div class="status-value">Jelenleg zárva</div>
+            </div>
+            <div class="status-badge">Szezon előtt</div>
+          </div>
+
+          <div class="grid-2">
+            <div class="stat">
+              <div class="stat-label">Várható nyitás</div>
+              <div class="stat-value">Május közepe</div>
+              <div class="stat-note">A pontos dátumot érdemes a szezon előtt frissíteni.</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Aktuális ár</div>
+              <div class="stat-value">1060 Ft / kg</div>
+              <div class="stat-note">A jelenlegi weboldalon feltüntetett ár alapján.</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Nyitvatartás</div>
+              <div class="stat-value">8:00–19:00</div>
+              <div class="stat-note">A szedést 18:45-kor célszerű befejezni.</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Fizetés</div>
+              <div class="stat-value">Készpénz</div>
+              <div class="stat-note">Jelenleg csak készpénzes fizetés szerepel az oldalon.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section" id="helyszinek">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Helyszínek</div>
+          <h2>A látogató rögtön lássa, hova mehet.</h2>
+        </div>
+        <div class="section-copy">
+          A jelenlegi oldal legnagyobb hibája, hogy az információk megvannak, csak rosszul vannak tálalva.
+          Itt végre kártyákba szervezve, gyorsan átfutható módon jelennek meg.
+        </div>
+      </div>
+
+      <div class="locations">
+        <article class="card">
+          <h3>Szentendre – Kalászi út</h3>
+          <div class="tag">Zárva</div>
+          <p>Itt később napi státusz, készletjelzés és egy útvonal gomb is megjelenhet.</p>
+          <span class="ghost">Útvonal / részletek</span>
+        </article>
+        <article class="card">
+          <h3>Budakalász – Lupa-sziget</h3>
+          <div class="tag">Zárva</div>
+          <p>A helyszínkártya célja az, hogy a látogató ne a szövegtengerben vadásszon.</p>
+          <span class="ghost">Útvonal / részletek</span>
+        </article>
+        <article class="card">
+          <h3>Solymár – Kövesbérci úttal szemben</h3>
+          <div class="tag">Zárva</div>
+          <p>Ez a blokk később fotóval, nyitvatartással és aktuális állapottal is bővíthető.</p>
+          <span class="ghost">Útvonal / részletek</span>
+        </article>
+        <article class="card">
+          <h3>Pilisvörösvár – őstermelői</h3>
+          <div class="tag">Zárva</div>
+          <p>Mobilon is jól átlátható, nincs ismétlődő menü és nincs széteső szerkezet.</p>
+          <span class="ghost">Útvonal / részletek</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-white" id="informacio">
+      <div class="container" style="display:grid;grid-template-columns:.9fr 1.1fr;gap:26px;align-items:start">
+        <div>
+          <div class="eyebrow">Miért jobb ez?</div>
+          <h2>Nem csak szebb. Sokkal használhatóbb is.</h2>
+          <p class="lead" style="margin-top:18px;max-width:560px;font-size:1rem">
+            A mostani oldal fő hibája, hogy minden információ egyforma súlyú. Ezért a felhasználó keresgél.
+            A modern verzióban a hierarchia világos: állapot, ár, szezon, helyszínek, kapcsolat.
+          </p>
+        </div>
+
+        <div class="benefits">
+          <div class="benefit">
+            <h3>Mobilon is gyorsan olvasható</h3>
+            <p>Nincs széteső menü, nincs felesleges duplikáció, nincs szövegtenger.</p>
+          </div>
+          <div class="benefit">
+            <h3>Bizalmat épít</h3>
+            <p>Rendezett arculat, tiszta kapcsolat blokk, professzionális első benyomás.</p>
+          </div>
+          <div class="benefit">
+            <h3>Könnyen frissíthető</h3>
+            <p>Nyitás, ár és napi státusz egy adminfelületen is gyorsan átírható.</p>
+          </div>
+          <div class="benefit">
+            <h3>Konverzióra épít</h3>
+            <p>Telefon, e-mail, útvonal, Facebook és szezoninformáció jól látható CTA-kban jelenik meg.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section" id="gyik" style="padding-top:40px">
+      <div style="max-width:760px">
+        <div class="eyebrow">GYIK</div>
+        <h2>A visszatérő kérdéseket nem ügyfélszolgálattal kell megoldani.</h2>
+        <p class="lead" style="margin-top:18px;max-width:700px;font-size:1rem">
+          Ezeket a kérdéseket a legtöbb látogató előbb-utóbb felteszi. Ha a weboldal előre megválaszolja,
+          kevesebb a fölösleges hívás és tisztább az élmény.
+        </p>
+      </div>
+
+      <div class="faq">
+        <div class="faq-item">
+          <div class="faq-q">Mikor nyit az eperföld?</div>
+          <div class="faq-a">A szezon várhatóan május közepén indul. A pontos nyitási dátumot érdemes közvetlenül a szezon előtt ellenőrizni.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Milyen eperfajtát termesztenek?</div>
+          <div class="faq-a">A jelenlegi oldalon szereplő információ szerint főként Elsanta típusú eperrel dolgoznak.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Lehet bankkártyával fizetni?</div>
+          <div class="faq-a">A mostani tájékoztatás alapján nem. A helyszíneken készpénzes fizetés szerepel.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section" id="kapcsolat" style="padding-top:40px">
+      <div class="contact">
+        <div>
+          <div class="eyebrow" style="color:rgba(255,255,255,.55)">Kapcsolat</div>
+          <h2 style="color:#fff">Egyszerű, tiszta kapcsolatfelvétel.</h2>
+          <p>
+            A mostani kapcsolat oldal gyakorlatilag egy szövegblokk. Ez itt egy olyan verzió, ahol a látogató
+            azonnal látja, hogyan tud írni, telefonálni vagy megnyitni a címet.
+          </p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-label">Telefon</div>
+            <div class="contact-value">06-26-368-000</div>
+            <div class="contact-sub">Gyors információ a szezon alatt</div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-label">E-mail</div>
+            <div class="contact-value">info@eperfold.hu</div>
+            <div class="contact-sub">Általános megkeresésekhez</div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-label">Másodlagos e-mail</div>
+            <div class="contact-value">info@erdbeerland.hu</div>
+            <div class="contact-sub">Alternatív elérhetőség</div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-label">Székhely</div>
+            <div class="contact-value">2084 Pilisszentiván, József Attila u. 14.</div>
+            <div class="contact-sub">Céges adatokhoz és hivatalos ügyekhez</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="container">
+      Modernizált koncepció • minimalista arculati irány • Eperföld
+    </footer>
+  </main>
+</body>
+</html>

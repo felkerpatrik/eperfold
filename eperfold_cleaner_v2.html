@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eperföld – Szedd magad eper</title>
+<meta name="description" content="Szedd magad eper – helyszínek, árak, nyitvatartás, nyitási információk és kapcsolat egy modern, mobilbarát oldalon.">
+<style>
+:root{--bg:#f7f5f1;--surface:rgba(255,255,255,.82);--card:#fff;--text:#17211d;--muted:#5c6b63;--line:rgba(23,33,29,.08);--red:#c62b46;--red-dark:#aa1f37;--green-soft:#eff8f2;--shadow:0 18px 46px rgba(0,0,0,.08);--max:1200px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:radial-gradient(circle at 10% 10%, rgba(47,123,75,.10), transparent 22%),radial-gradient(circle at 88% 7%, rgba(198,43,70,.10), transparent 22%),linear-gradient(180deg,#fbfaf8 0%,var(--bg) 100%)}
+a{text-decoration:none;color:inherit}.container{width:min(var(--max),calc(100% - 32px));margin:0 auto}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(247,245,241,.72);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid rgba(23,33,29,.06)}
+.nav-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:14px}.brand-text strong{display:block;font-size:1.02rem;letter-spacing:-.02em}.brand-text span{display:block;font-size:.87rem;color:var(--muted);margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:26px;font-size:.95rem;color:#314139}.nav-cta{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:999px;background:var(--text);color:#fff;font-size:.92rem;font-weight:700;white-space:nowrap}
+.hero{padding:72px 0 40px}.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:28px;align-items:stretch}
+.status-pill{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.82);border:1px solid rgba(23,33,29,.08);color:var(--muted);font-size:.92rem;box-shadow:0 6px 18px rgba(0,0,0,.03)}
+h1{margin:18px 0 0;font-size:clamp(2.5rem, 6vw, 5rem);line-height:1.02;letter-spacing:-.055em;max-width:780px}.accent{color:var(--red)}
+.lead{margin:20px 0 0;max-width:730px;color:#52615a;line-height:1.78;font-size:1.08rem}.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;font-weight:700;font-size:.96rem;transition:transform .16s ease,box-shadow .16s ease}.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:linear-gradient(135deg,var(--red),var(--red-dark));color:#fff;box-shadow:0 16px 34px rgba(198,43,70,.22)}
+.btn-secondary{background:#fff;color:var(--text);border:1px solid rgba(23,33,29,.10);box-shadow:0 10px 24px rgba(0,0,0,.04)}
+.hero-panel{background:var(--surface);border:1px solid rgba(23,33,29,.08);border-radius:32px;box-shadow:var(--shadow);padding:18px;backdrop-filter:blur(10px)}
+.hero-panel-inner{border-radius:24px;background:#faf7f1;padding:22px;height:100%}
+.hero-panel h2{margin:0;font-size:1.5rem;letter-spacing:-.04em}.hero-panel p{margin:10px 0 0;color:var(--muted);line-height:1.72;font-size:.96rem}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:20px}
+.fact{background:#fff;border:1px solid rgba(23,33,29,.05);border-radius:20px;padding:18px;box-shadow:0 10px 24px rgba(0,0,0,.04)}
+.fact-label{font-size:.9rem;color:#6a776f}.fact-value{margin-top:8px;font-size:1.24rem;font-weight:800;letter-spacing:-.03em}.fact-note{margin-top:10px;font-size:.92rem;line-height:1.62;color:var(--muted)}
+.section{padding:28px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:22px}
+.section-head h2{margin:0;font-size:clamp(1.9rem,4vw,3rem);line-height:1.08;letter-spacing:-.045em}.section-head p{max-width:540px;margin:0;color:var(--muted);line-height:1.72;font-size:.97rem}
+.locations{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.location-card{background:#fff;border:1px solid rgba(23,33,29,.08);border-radius:28px;padding:20px;box-shadow:0 14px 32px rgba(0,0,0,.05);overflow:hidden}
+.location-top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.location-card h3{margin:0;font-size:1.24rem;line-height:1.28;letter-spacing:-.03em}
+.location-status{display:inline-flex;align-items:center;border-radius:999px;background:#f4f6f4;color:#425048;padding:9px 12px;font-size:.88rem;font-weight:700;white-space:nowrap}
+.location-description{margin:14px 0 0;color:var(--muted);line-height:1.72;font-size:.95rem}
+.map-wrap{margin-top:16px;border-radius:20px;overflow:hidden;border:1px solid rgba(23,33,29,.08);height:260px;background:#edf1ed}
+iframe{width:100%;height:100%;border:0;display:block}.map-meta{margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;color:#47544c;font-size:.87rem}
+.meta-chip{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;background:var(--green-soft)}
+.location-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.mini-btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 14px;border-radius:999px;font-size:.9rem;font-weight:700;background:#fff;border:1px solid rgba(23,33,29,.10);color:#243029}
+.why-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.why-card{background:#fff;border:1px solid rgba(23,33,29,.08);border-radius:24px;padding:22px;box-shadow:0 12px 28px rgba(0,0,0,.04)}
+.why-card h3{margin:0;font-size:1.06rem;letter-spacing:-.02em}.why-card p{margin:12px 0 0;color:var(--muted);line-height:1.72;font-size:.95rem}
+.cta-band{background:#18221d;color:#fff;border-radius:32px;padding:28px;box-shadow:0 18px 46px rgba(0,0,0,.12)}
+.cta-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:22px;align-items:start}.cta-grid h2{margin:0;font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.08;letter-spacing:-.045em}
+.cta-grid p{color:rgba(255,255,255,.76);line-height:1.8;margin:14px 0 0}
+.contact-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.contact-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);border-radius:22px;padding:18px;backdrop-filter:blur(6px)}
+.contact-card strong{display:block;font-size:.88rem;color:rgba(255,255,255,.62);letter-spacing:.01em}.contact-card span{display:block;margin-top:8px;font-weight:800;line-height:1.5;letter-spacing:-.02em}
+.contact-card small{display:block;margin-top:8px;color:rgba(255,255,255,.72);line-height:1.6;font-size:.9rem}
+footer{padding:24px 0 34px;color:#67746c;font-size:.9rem;text-align:center}
+@media (max-width:1040px){.hero-grid,.cta-grid{grid-template-columns:1fr}.why-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:860px){.nav-links{display:none}.locations,.contact-cards{grid-template-columns:1fr}.section-head{flex-direction:column;align-items:flex-start}}
+@media (max-width:640px){.container{width:min(var(--max),calc(100% - 20px))}.hero{padding-top:42px}.facts,.why-grid{grid-template-columns:1fr}.nav-cta{padding:10px 14px;font-size:.88rem}}
+</style>
+</head>
+<body>
+<header class="navbar">
+  <div class="container nav-inner">
+    <a class="brand" href="#top" aria-label="Eperföld főoldal">
+      <svg width="46" height="46" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M61 26C78 26 95 39 95 62C95 85 79 102 60 105C40 102 25 85 25 62C25 39 43 26 61 26Z" fill="#C62B46"></path>
+        <path d="M58 18C52 10 43 9 37 14C42 16 46 21 47 27" fill="#2F7B4B"></path>
+        <path d="M62 18C69 10 78 9 84 14C79 16 75 21 74 27" fill="#2F7B4B"></path>
+        <path d="M60 14C58 10 58 7 60 4C62 7 62 10 60 14Z" fill="#2F7B4B"></path>
+        <circle cx="46" cy="47" r="2.2" fill="#FFECC7"></circle><circle cx="61" cy="43" r="2.2" fill="#FFECC7"></circle><circle cx="75" cy="49" r="2.2" fill="#FFECC7"></circle>
+        <circle cx="40" cy="60" r="2.2" fill="#FFECC7"></circle><circle cx="54" cy="57" r="2.2" fill="#FFECC7"></circle><circle cx="68" cy="60" r="2.2" fill="#FFECC7"></circle>
+        <circle cx="82" cy="63" r="2.2" fill="#FFECC7"></circle><circle cx="46" cy="74" r="2.2" fill="#FFECC7"></circle><circle cx="61" cy="72" r="2.2" fill="#FFECC7"></circle>
+        <circle cx="75" cy="77" r="2.2" fill="#FFECC7"></circle><circle cx="56" cy="88" r="2.2" fill="#FFECC7"></circle><circle cx="68" cy="89" r="2.2" fill="#FFECC7"></circle>
+      </svg>
+      <div class="brand-text"><strong>Eperföld</strong><span>Szedd magad eper</span></div>
+    </a>
+    <nav class="nav-links" aria-label="Fő navigáció">
+      <a href="#helyszinek">Helyszínek</a>
+      <a href="#indulas-elott">Indulás előtt</a>
+      <a href="#kapcsolat">Kapcsolat</a>
+    </nav>
+    <a class="nav-cta" href="#kapcsolat">Kapcsolat</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="status-pill">Jelenleg zárva • várható nyitás: május közepe körül</div>
+        <h1>Szedd magad <span class="accent">eper</span> – a fontos információk egy helyen.</h1>
+        <p class="lead">Gyorsan átlátható helyszínek, 2025-ös árak, nyitvatartás és elérhetőségek. Ha eperföldet keresel, ne menüt böngéssz – tudd meg azonnal, hova érdemes indulni.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#helyszinek">Helyszínek megtekintése</a>
+          <a class="btn btn-secondary" href="tel:+3626368000">Telefon: 06-26-368-000</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="Kiemelt információk">
+        <div class="hero-panel-inner">
+          <h2>Indulás előtt ezt nézd meg</h2>
+          <p>A jelenlegi szezoninformációk és a legfontosabb feltételek röviden, felesleges szövegek nélkül.</p>
+          <div class="facts">
+            <div class="fact"><div class="fact-label">Nyitás</div><div class="fact-value">Május közepe körül</div><div class="fact-note">A pontos dátum nyitás előtt pár nappal kerül kiírásra. A szezon általában 4 hét, de az időjárástól és a terméstől is függ.</div></div>
+            <div class="fact"><div class="fact-label">Ár 2025</div><div class="fact-value">1060 Ft / kg</div><div class="fact-note">Vödör: 500 Ft / db<br>Faláda: 500 Ft / db</div></div>
+            <div class="fact"><div class="fact-label">Nyitvatartás</div><div class="fact-value">8:00–19:00</div><div class="fact-note">Ünnepnapokon is. A szedést kérjük 18:45-kor befejezni.</div></div>
+            <div class="fact"><div class="fact-label">Fizetés</div><div class="fact-value">Csak készpénz</div><div class="fact-note">Földjeinken kizárólag készpénzes fizetésre van lehetőség.</div></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="helyszinek">
+    <div class="container">
+      <div class="section-head">
+        <h2>Válaszd ki a hozzád legközelebbi helyszínt</h2>
+        <p>A megközelítési leírások az eredeti oldal adatai alapján szerepelnek. A GPS-koordinátákat nem emeltem fő elemként, csak a térképek alá tettem háttérinformációként.</p>
+      </div>
+
+      <div class="locations">
+        <article class="location-card">
+          <div class="location-top"><h3>Szentendre – Kalászi út</h3><div class="location-status">Zárva</div></div>
+          <p class="location-description">Szentendréről Budakalászra vezető régi útról kell a vízművel szembe a földútra térni a Ford kereskedés mögé, onnan 150–200 métert kell még haladni a földúton befelé.</p>
+          <div class="map-wrap"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=47.639710,19.061759&z=15&output=embed" title="Szentendre Kalászi út térkép"></iframe></div>
+          <div class="map-meta"><span class="meta-chip">GPS: 47.639710, 19.061759</span></div>
+          <div class="location-actions"><a class="mini-btn" href="https://www.google.com/maps?q=47.639710,19.061759" target="_blank" rel="noopener noreferrer">Megnyitás Google Térképen</a></div>
+        </article>
+
+        <article class="location-card">
+          <div class="location-top"><h3>Budakalász – Lupa-sziget</h3><div class="location-status">Zárva</div></div>
+          <p class="location-description">A 11-es főút Lupa-szigeti elágazásánál, a Duna gátjánál található.</p>
+          <div class="map-wrap"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=47.61806,19.07906&z=15&output=embed" title="Budakalász Lupa-sziget térkép"></iframe></div>
+          <div class="map-meta"><span class="meta-chip">GPS: 47.61806, 19.07906</span></div>
+          <div class="location-actions"><a class="mini-btn" href="https://www.google.com/maps?q=47.61806,19.07906" target="_blank" rel="noopener noreferrer">Megnyitás Google Térképen</a></div>
+        </article>
+
+        <article class="location-card">
+          <div class="location-top"><h3>Solymár – Kövesbérci úttal szemben</h3><div class="location-status">Zárva</div></div>
+          <p class="location-description">A 10-es főúton a 218-as, 820-as, 821-es, 830-as és 832-es busszal lehet megközelíteni. A megálló neve: Solymár Kövesbérci út.</p>
+          <div class="map-wrap"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=47.591736,18.982494&z=15&output=embed" title="Solymár Kövesbérci térkép"></iframe></div>
+          <div class="map-meta"><span class="meta-chip">GPS: 47.591736, 18.982494</span></div>
+          <div class="location-actions"><a class="mini-btn" href="https://www.google.com/maps?q=47.591736,18.982494" target="_blank" rel="noopener noreferrer">Megnyitás Google Térképen</a></div>
+        </article>
+
+        <article class="location-card">
+          <div class="location-top"><h3>Pilisvörösvár – Őstermelői</h3><div class="location-status">Zárva</div></div>
+          <p class="location-description">A pilisvörösvári temetővel szemközti oldalon, a Csobánkai úton található.</p>
+          <div class="map-wrap"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=47.624657,18.916413&z=15&output=embed" title="Pilisvörösvár Őstermelői térkép"></iframe></div>
+          <div class="map-meta"><span class="meta-chip">GPS: 47.624657, 18.916413</span></div>
+          <div class="location-actions"><a class="mini-btn" href="https://www.google.com/maps?q=47.624657,18.916413" target="_blank" rel="noopener noreferrer">Megnyitás Google Térképen</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="indulas-elott">
+    <div class="container">
+      <div class="section-head">
+        <h2>Amit indulás előtt érdemes tudni</h2>
+        <p>Ez a blokk a régi “fontos tudnivalók” helyett rövidebben és emberibben mondja el ugyanazt, amit az érdeklődő valóban keres.</p>
+      </div>
+      <div class="why-grid">
+        <article class="why-card"><h3>Mikor érdemes figyelni?</h3><p>A pontos nyitási dátum nyitás előtt pár nappal kerül kiírásra. Ha biztosra akarsz menni, indulás előtt nézd meg a Facebook oldalt vagy telefonálj.</p></article>
+        <article class="why-card"><h3>Milyen eper várható?</h3><p>Földjeinken többségében Elsanta típusú eper termesztéssel foglalkozunk.</p></article>
+        <article class="why-card"><h3>Miért így jobb az oldal?</h3><p>A lényeg az első képernyőn látszik: nyitás, ár, nyitvatartás, fizetés és helyszínek. Nem kell menük között keresgélni.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="kapcsolat">
+    <div class="container">
+      <div class="cta-band">
+        <div class="cta-grid">
+          <div>
+            <h2>Kapcsolat és friss információk</h2>
+            <p>Az eredeti oldal alapján ezek a hivatalos elérhetőségek. A szezon előtti vagy aktuális állapotváltozások miatt érdemes indulás előtt ránézni a közösségi oldalra is.</p>
+          </div>
+          <div class="contact-cards">
+            <div class="contact-card"><strong>Telefonszám</strong><span><a href="tel:+3626368000">06-26-368-000</a></span><small>Gyors érdeklődéshez.</small></div>
+            <div class="contact-card"><strong>E-mail</strong><span><a href="mailto:info@eperfold.hu">info@eperfold.hu</a></span><small>Elsődleges e-mail cím.</small></div>
+            <div class="contact-card"><strong>Másodlagos e-mail</strong><span><a href="mailto:info@erdbeerland.hu">info@erdbeerland.hu</a></span><small>További elérhetőség.</small></div>
+            <div class="contact-card"><strong>Facebook</strong><span><a href="https://www.facebook.com/eper.szeddmagad/" target="_blank" rel="noopener noreferrer">facebook.com/eper.szeddmagad</a></span><small>Közösségi oldal az aktuális információkhoz.</small></div>
+            <div class="contact-card"><strong>Székhely</strong><span>2084 Pilisszentiván, József Attila u. 14.</span><small>Erdbeerland-Hungária Kft.</small></div>
+            <div class="contact-card"><strong>Fizetés</strong><span>Csak készpénz</span><small>Ezt indulás előtt érdemes észben tartani.</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Eperföld • Szedd magad eper • Modern, letisztult, reszponzív bemutatóoldal</footer>
+</body>
+</html>
